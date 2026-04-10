@@ -1,0 +1,39 @@
+# sample_queries.txt
+#
+# sample_queries.txt contains example SQL queries that can be used to test
+# different PatternVis features.
+
+
+# Example 1:
+# Aggregation over a single table with GROUP BY.
+SELECT B.color, COUNT(B.bid), MAX(B.bid)
+FROM Boat B
+GROUP BY B.color
+
+
+# Example 2:
+# Single-table grouping query.
+SELECT S.rating, COUNT(*)
+FROM Sailor S
+GROUP BY S.rating
+
+
+# Example 3:
+# Multi-table join with filtering and aggregation.
+SELECT S.rating, B.color, COUNT(*) , MAX(S.age)
+FROM Sailor S
+JOIN Reserves R ON S.sid = R.sid
+JOIN Boat B ON R.bid = B.bid
+WHERE S.age > 25 AND B.color = 'red'
+GROUP BY S.rating, B.color
+
+
+# Example 4:
+# Full pipeline example.
+SELECT S.rating, B.color, COUNT(*), MAX(S.age)
+FROM Sailor S
+JOIN Reserves R ON S.sid = R.sid
+JOIN Boat B ON R.bid = B.bid
+WHERE S.age > 25 AND B.color = 'red'
+GROUP BY S.rating, B.color
+ORDER BY S.rating DESC, B.color ASC
