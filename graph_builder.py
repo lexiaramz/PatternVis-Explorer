@@ -58,11 +58,13 @@ def build_query_graph(parsed: dict) -> nw.Graph:
             condition=join["condition"]
         )
 
+    # Add additional nodes for WHERE filters, GROUP BY, ORDER BY, and SELECT output as needed.
     group_by_value = parsed.get("group_by", "")
     aggregates = parsed.get("aggregates", [])
     select_clause = parsed.get("select", "")
     order_by_value = parsed.get("order_by", "")
 
+    # Determine which stages are present in the query to know which nodes to add.
     has_filters = len(filters) > 0
     has_aggregation = bool(group_by_value or aggregates)
     has_order_by = bool(order_by_value)

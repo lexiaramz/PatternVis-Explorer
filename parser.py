@@ -167,6 +167,7 @@ def parse_schema(schema_text: str) -> dict:
     lines = [line.strip() for line in schema_text.splitlines() if line.strip()]
 
     for line in lines:
+        # Expecting lines in the format: TableName(column1, column2, ...)
         match = re.match(r"(\w+)\s*\((.*?)\)", line)
         if match:
             table_name = match.group(1)
