@@ -433,6 +433,7 @@ if sl.button("Generate Visualization"):
         "hover": true,
         "zoomView": true,
         "dragView": true,
+        "dragNodes": false,
         "navigationButtons": true
       },
       "physics": {
